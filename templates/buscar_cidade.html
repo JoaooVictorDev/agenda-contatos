@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Contatos por Cidade</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Buscar Contatos por Cidade</h1>
+        
+        <!-- Formulário para entrada da cidade -->
+        <form method="post">
+            <div class="form-group">
+                <label for="cidade">Digite o nome da cidade:</label>
+                <input type="text" class="form-control" name="cidade" id="cidade" required> <!-- Campo de entrada para cidade -->
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button> <!-- Botão para enviar o formulário -->
+        </form>
+        
+        <!-- Exibir resultados se houverem -->
+        {% if contatos %}
+            <h2>Resultados para: {{ cidade }}</h2>
+            <ul class="list-group">
+                {% for contato in contatos %}
+                    <li class="list-group-item">
+                        <strong>Nome:</strong> {{ contato['nome'] }} <br>  <!-- Acessar diretamente o nome do contato -->
+                        <strong>Telefone:</strong> {{ contato['telefone'].replace(';',' - ') }} <br>  <!-- Acessar o telefone -->
+                        <strong>Cidades:</strong> {{ contato['cidades'].replace(';',', ') }} <br>  <!-- Acessar as cidades do contato -->
+                        <strong>Observações:</strong> {{ contato['obs'] }}  <!-- Acessar observações adicionais -->
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum contato encontrado para a cidade "{{ cidade }}".</p>  <!-- Mensagem se não houver resultados -->
+        {% endif %}
+        
+        <a href="/" class="btn btn-primary mt-3">Voltar ao Painel</a>  <!-- Link para voltar ao painel principal -->
+    </div>
+</body>
+</html>

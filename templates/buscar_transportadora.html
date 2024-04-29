@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar por Transportadora</title>
+    <!-- Adicionando Bootstrap para estilos -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Buscar por Transportadora</h1>
+        <form method="post" action="/buscar-transportadora">
+            <div class="form-group">
+                <label para="nome">Nome da Transportadora:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+        
+        {% if resultados %}
+            <h2>Resultados para a transportadora "{{ nome }}"</h2>
+            <ul class="list-group">
+                {% for transportadora in resultados %}
+                    <li class="list-group-item">
+                        <strong>Nome:</strong> {{ transportadora['nome'] }}<br>
+                        <strong>Cidades:</strong> {{ transportadora['cidades'] }}<br>
+                        <strong>Telefone:</strong> {{ transportadora['numero'] }}<br>
+                        <strong>E-mail:</strong> {{ transportadora['email'] }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum resultado encontrado para a transportadora "{{ nome }}".</p>
+        {% endif %}
+        
+        <a href="/" class="btn btn-secondary mt-3">Voltar ao Painel</a>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

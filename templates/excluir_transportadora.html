@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Transportadora</title>
+    <!-- Adicionando Bootstrap para estilos -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Excluir Transportadora</h1>
+        <form method="post" action="/excluir-transportadora">
+            <div class="form-group">
+                <label para="nome">Nome da Transportadora:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <button type="submit" class="btn btn-danger">Buscar para Excluir</button>
+        </form>
+
+        {% if transportadora %}
+            <h2>Tem certeza de que deseja excluir a transportadora "{{ transportadora['nome'] }}"?</h2>
+            <form method="post" action="/confirmar-exclusao">
+                <input type="hidden" name="id" value="{{ transportadora['id'] }}">
+                <button type="submit" class="btn btn-danger">Sim, Excluir</button>
+            </form>
+            <a href="/" class="btn btn-secondary">Cancelar</a>
+        {% elif not transportadora and nome %}
+            <p>Nenhum resultado encontrado para o nome "{{ nome }}".</p>
+        {% endif %}
+
+        <a href="/" class="btn btn-secondary mt-3">Voltar ao Painel</a>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

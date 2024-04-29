@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualizar Cadastro</title>
+    <!-- Adicionando Bootstrap para estilos -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Atualizar Cadastro</h1>
+        <form method="post" action="/atualizar-cadastro">
+            <div class="form-group">
+                <label para="nome">Nome da Transportadora:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+
+        {% if transportadora %}
+            <h2>Atualizar Dados da Transportadora "{{ transportadora['nome'] }}"</h2>
+            <form method="post" action="/salvar-atualizacao">
+                <input type="hidden" name="id" value="{{ transportadora['id'] }}">
+                <div class="form-group">
+                    <label para="nome_atualizado">Nome:</label>
+                    <input type="text" class="form-control" id="nome_atualizado" name="nome_atualizado" value="{{ transportadora['nome'] }}" required>
+                </div>
+                <div class="form-group">
+                    <label para="cidades_atualizadas">Cidades que Atendem:</label>
+                    <input type="text" class="form-control" id="cidades_atualizadas" name="cidades_atualizadas" value="{{ transportadora['cidades'] }}" required>
+                </div>
+                <div class="form-group">
+                    <label para="numero_atualizado">Número de Telefone:</label>
+                    <input type="tel" class="form-control" id="numero_atualizado" name="numero_atualizado" value="{{ transportadora['numero'] }}" required>
+                </div>
+                <div class="form-group">
+                    <label para="email_atualizado">E-mail:</label>
+                    <input type="email" class="form-control" id="email_atualizado" name="email_atualizado" value="{{ transportadora['email'] }}" required>
+                </div>
+                <div class="form-group">
+                    <label para="observacao_atualizada">Observação:</label>
+                    <textarea class="form-control" id="observacao_atualizada" name="observacao_atualizada" rows="3">{{ transportadora['observacao'] }}</textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success">Salvar Atualização</button>
+            </form>
+        {% elif not transportadora and nome %}
+            <p>Nenhum resultado encontrado para o nome "{{ nome }}".</p>
+        {% endif %}
+
+        <a href="/" class="btn btn-secondary mt-3">Voltar ao Painel</a>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

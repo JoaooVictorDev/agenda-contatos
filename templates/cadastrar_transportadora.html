@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Transportadora</title>
+    <!-- Adicionando Bootstrap para estilos -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Cadastrar Transportadora</h1>
+        <form method="post" action="/cadastrar-transportadora">
+            <div class="form-group">
+                <label for="nome">Nome da Transportadora:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cidades">Cidades que Atendem:</label>
+                <input type="text" class="form-control" id="cidades" name="cidades" required>
+                <small class="form-text text-muted">Separe as cidades por vírgulas, ex.: São Paulo, Rio de Janeiro, Belo Horizonte</small>
+            </div>
+
+            <div class="form-group">
+                <label for="numero">Número de Telefone:</label>
+                <input type="tel" class="form-control" id="numero" name="numero" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="observacao">Observação:</label>
+                <textarea class="form-control" id="observacao" name="observacao" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+
+        <a href="/" class="btn btn-secondary mt-3">Voltar ao Painel</a>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
